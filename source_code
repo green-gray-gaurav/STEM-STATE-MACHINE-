@@ -1,0 +1,13 @@
+{david}
+{complex}
+{rasterGraphs}
+{output} 
+
+$cell1 $cell2 $cell3 F SUM [123] pull 
+HOOK
+
+@summer
+$cell1 F [999]
+
+
+@main {mathMode} {vectors}
