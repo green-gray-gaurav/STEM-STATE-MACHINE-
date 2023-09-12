@@ -1,13 +1,7 @@
-{david}
-{complex}
-{rasterGraphs}
-{output} 
+$cell1
 
-$cell1 $cell2 $cell3 F SUM [123] pull 
-HOOK
-
-@summer
-$cell1 F [999]
+S [hello_world!] display
+S [my_name_is_gaurav] display
+S [yahoo!] display
 
 
-@main {mathMode} {vectors}

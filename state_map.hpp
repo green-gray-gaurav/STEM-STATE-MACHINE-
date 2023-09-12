@@ -36,25 +36,32 @@ class State{
 class State_map{
 
     public:
+        std::string map_name; //this is the map name
+        
         //mkaing a 5 x 5 map
+
+
 
         State STATES[5][5];
         std::vector<std::pair<int , int>> sequencer; //thit is an imort tant part
         int currentSquenceState = 0; // starting state null
 
         //some pointers
-
         Cell_table * cellTable =NULL;
         hyperSq * hyperStateQueue = NULL;
 
+        //internal states // selction cell
+         std::pair<int , std::string> SELECTED_CELL; //cell
+        enum{F,I,S} CELL_PAHSE = I;
+        std::string D_KEY;
 
-    
+        //some other states ehecihc are e\ye tto decode
 
-    State_map();
-    
+        
 
-    void runMap();
+    std::string runMap();
 
+    bool isEvaluated();
 
     void saveMap( std::ofstream& outFile, std::string& filename);
 

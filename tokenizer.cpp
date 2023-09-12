@@ -43,7 +43,7 @@ std::vector<TOKEN> lexical_analyser(const std::string sourceCode , int & flag){
     for(int i = 0 ; i < sourceCode.length()+1 ; i++){ //givin a bias to len to get all tokens
         
         if(token.length()>0 && (sourceCode[i]==' ' || sourceCode[i] == '\n' || i==sourceCode.length())){//if white space encountred
-            
+            std::cout << token << std::endl;    
             if(token[0]=='$' && containsOnlyAlphanumeric(token.substr(1 , token.length()-1))  ){ // its a cell selection state
 
                     TOKEN_BAG.push_back({"CELL" , (token.substr(1 , token.length()-1))  , std::make_pair(0,1) });
@@ -79,8 +79,9 @@ std::vector<TOKEN> lexical_analyser(const std::string sourceCode , int & flag){
                     TOKEN_BAG.push_back({"INCLUDE" , token.substr(1 , token.length()-2) , std::make_pair(1,4)});
  
             }
-            else{
-                flag = 1; // error // in valied token
+            else {
+                // if(token == " " && token !="\n")
+                    flag = 1; // error // in valied token
             }
             
             token="" ;//get the next token
@@ -102,7 +103,7 @@ std::string reader(std::string filename){
 
 // int main(){
 
-//     std::string sc = reader("source_code.txt");
+//     std::string sc = reader("source_code");
 //     int flag = 0;
 //     std::vector<TOKEN> tb = lexical_analyser(sc , flag);
 

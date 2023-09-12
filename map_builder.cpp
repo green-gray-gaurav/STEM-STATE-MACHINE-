@@ -21,11 +21,13 @@ std::map<std::string , State_map> buildMap(struct std::vector<TOKEN> token_bag){
         if(t.token_name=="MAP"){    //map selction token make the extension/building of new map
             selected_map = t.raw_data;
         }
-        // std::cout << t.loc.first << " " << t.loc.second << std::endl;
-        map_table[selected_map].sequencer.push_back(t.loc); //set the sequnce of teh states
-        //fill the state queue
-        map_table[selected_map].STATES[t.loc.first][t.loc.second].bufferQueue.push(State::StateData(t.token_name  ,t.raw_data));
-        
+        else
+        {
+            // std::cout << t.loc.first << " " << t.loc.second << std::endl;
+            map_table[selected_map].sequencer.push_back(t.loc); //set the sequnce of teh states
+            //fill the state queue
+            map_table[selected_map].STATES[t.loc.first][t.loc.second].bufferQueue.push(State::StateData(t.token_name  ,t.raw_data));
+        }
     }
 
     
@@ -72,7 +74,14 @@ int main(int argc , char * argv[]){
         
         std::string filename = argv[1];
         std::string source_code = reader(filename);
-        std::string saved_file_name = filename+"_.dat";
+
+        std::string folder = std::string(argv[2]);
+        std::string saved_file_name;
+        if(folder != ".")
+            saved_file_name = folder+"\\"+filename+"_.dat";
+        else 
+            saved_file_name = filename+"_.dat";
+
 
       
         int flag = 0;
