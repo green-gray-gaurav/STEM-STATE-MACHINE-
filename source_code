@@ -1,23 +1,16 @@
-$loop MOVE I [5] S [printer] CHOOK
+$stream I read
 
-@printer 
+$stream GEQL I [18]
 
-    $stream MOVE S [this is the inner loop ] display newline
-            
-           
-    $loop2 GETCELL I [main:loop] MOVE S [printer2] CHOOK
-    
+$stream MOVE S [print]
+        SELECT S [print2] 
+        HOOK
 
-    $temp GETCELL I [main:loop] $temp SUB I [1] $temp PUTCELL I [main:loop]
+@print
+    $stream S [sorry you cant vote] display
 
-@printer2 
-    $stream GETCELL I [printer:loop2] display newline
-    $temp GETCELL I [printer:loop2] SUB I [1]  PUTCELL I [printer:loop2]
-
-
-
-
-
+@print2 
+    $stream S [yes! you can vote] display
 
 
 

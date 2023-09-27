@@ -122,7 +122,12 @@
                     
                 }
                 
-                
+               else if( D_KEY_TYPE == SELECT){
+                    if(cellTable->table[SELECTED_CELL.first].VALUE.integer){
+                        cellTable->table[SELECTED_CELL.first].VALUE.str = e.VALUE.str;
+                    }
+                    
+              }  
                 
                 }
 
@@ -268,9 +273,90 @@
                     
                 }
 
-                
+              //here is the importatnt select statemt//conditinll move 
+              else if( D_KEY_TYPE == SELECT){
+                    if(cellTable->table[SELECTED_CELL.first].VALUE.integer){
+                        cellTable->table[SELECTED_CELL.first].VALUE.str = str_data;
+                    }
+                    
+              } 
 
-                //here are some keys for the cell relation tansfer
+              //relational operators
+            else if (D_KEY_TYPE == GREATER){
+                ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer > int(d_value);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal > d_value;
+                    }
+              }
+            else if (D_KEY_TYPE == SMALLER){
+                     ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer < int(d_value);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal < d_value;
+                    }
+
+              }
+            else if (D_KEY_TYPE == GEQUAL){
+                     ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = (cellTable->table[SELECTED_CELL.first].VALUE.integer >= int(d_value));
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = (cellTable->table[SELECTED_CELL.first].VALUE.decimal >= d_value);
+                    }
+
+              }
+            else if (D_KEY_TYPE == SEQUAL){
+                     ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer <= int(d_value);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal <= d_value;
+                    }
+
+              }
+            else if (D_KEY_TYPE ==  EQUAL){
+                     ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer == int(d_value);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal == d_value;
+                    }
+
+              }
+            else if (D_KEY_TYPE == DIFFERENT){
+                     ss << str_data; double d_value; ss >> d_value;
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer != int(d_value);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal != d_value;
+                    }
+
+
+              }
+              
+               
+ 
                 
 
 
@@ -288,10 +374,18 @@
             if(stateData.raw_data == "SUB") D_KEY_TYPE = SUB;
             if(stateData.raw_data == "MUL") D_KEY_TYPE = MUL;
             if(stateData.raw_data == "DIV") D_KEY_TYPE = DIV;
+            
             if(stateData.raw_data == "GETCELL") D_KEY_TYPE = GETCELLVAL;
-            if(stateData.raw_data == "PUTCELL") D_KEY_TYPE = PUTCELLVAL; 
+            if(stateData.raw_data == "PUTCELL") D_KEY_TYPE = PUTCELLVAL;    
+            
+            if(stateData.raw_data == "SELECT") D_KEY_TYPE = SELECT;
 
-
+            if(stateData.raw_data == "GEQL") D_KEY_TYPE = GEQUAL;
+            if(stateData.raw_data == "SEQL") D_KEY_TYPE = SEQUAL;
+            if(stateData.raw_data == "EQL") D_KEY_TYPE = EQUAL;
+            if(stateData.raw_data == "GREATER") D_KEY_TYPE = GREATER;
+            if(stateData.raw_data == "SMALLER") D_KEY_TYPE = SMALLER;
+            if(stateData.raw_data == "DIFFERENT") D_KEY_TYPE = DIFFERENT;
             // std::cerr << "data: " <<  D_KEY_TYPE <<stateData.raw_data << std::endl;
             // if(stateData.raw_data == "") D_KEY_TYPE = MOVE;
         }
