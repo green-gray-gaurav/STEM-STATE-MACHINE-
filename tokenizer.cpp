@@ -40,21 +40,32 @@ std::vector<TOKEN> lexical_analyser(const std::string sourceCode , int & flag){
     std::vector<TOKEN> TOKEN_BAG;
 
     std::string token = "";
+    bool selection_lock = false;
     for(int i = 0 ; i < sourceCode.length()+1 ; i++){ //givin a bias to len to get all tokens
         
         if(token.length()>0 && (sourceCode[i]==' ' || sourceCode[i] == '\n' || i==sourceCode.length())){//if white space encountred
-            std::cout << token << std::endl;    
+            // std::cout << token << std::endl;    
             if(token[0]=='$' && containsOnlyAlphanumeric(token.substr(1 , token.length()-1))  ){ // its a cell selection state
 
                     TOKEN_BAG.push_back({"CELL" , (token.substr(1 , token.length()-1))  , std::make_pair(0,1) });
+
             }
             else if(token.length() ==1  && token[0] <= 'Z' && token[0] >= 'A'){ // its a phase selction state
                     TOKEN_BAG.push_back({"PHASE" , token , std::make_pair(0,2)});
             }
+            
             else if (token[0]=='[' && token[token.length()-1] == ']'){ // its a feeding state // use state 
-                    TOKEN_BAG.push_back({"FEED" , token.substr(1,token.length()-2) , std::make_pair(0,3)});
+
+                TOKEN_BAG.push_back({"FEED" , token.substr(1,token.length()-2) , std::make_pair(0,3)});
 
             }
+             //correction of the feed bracket selection mistake
+                else if( token[0]=='[' ) { // half token left
+                    //this half token been collevtd and we encountred whlite space
+                    token+=' ';
+                    selection_lock = true;   //this will help to gather the broken parts of the values inside
+                }
+
             else if(token == "HOOK"){ // branching / selection /loop // control
                     TOKEN_BAG.push_back({"HOOK" , token , std::make_pair(0,4)});
 
@@ -83,13 +94,16 @@ std::vector<TOKEN> lexical_analyser(const std::string sourceCode , int & flag){
                 // if(token == " " && token !="\n")
                     flag = 1; // error // in valied token
             }
-            
-            token="" ;//get the next token
+            if(!selection_lock)
+                token="" ;//get the next token
+            else
+                selection_lock = false;
         }
         else{   //else // otherwise
             if(sourceCode[i]!=' ' && sourceCode[i] !='\n')
                 token += sourceCode[i];
             }
+           
     }
     return TOKEN_BAG;
 }
@@ -105,14 +119,14 @@ std::string reader(std::string filename){
 
 //     std::string sc = reader("source_code");
 //     int flag = 0;
-//     std::vector<TOKEN> tb = lexical_analyser(sc , flag);
+//     std::vector< TOKEN> tb = lexical_analyser(sc , flag);
 
 //     std::cout << flag ;
     
 //     for(auto t : tb){
-//         std::cout << t.token_name << " " << t.raw_data << std::endl;
+//         std::cout << flag << t.token_name << " " << t.raw_data << std::endl;
 //     }
-
+ 
 
 //     return 0;
 // }

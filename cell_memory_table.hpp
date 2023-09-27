@@ -30,7 +30,7 @@ class Cell_table{
                int integer;
                float decimal;
                std::string str;
-
+                long ref;
         };
         struct value VALUE;
        void setRef(std::vector<int> rf){
@@ -43,8 +43,8 @@ class Cell_table{
     }; 
     //cell id to entry refernce in teh table
     std::map<int , entry> table;
-
     int counter = 0;
+
     public:
        
         int add(std::string cell_name  , std::string map_name);
@@ -58,7 +58,9 @@ class Cell_table{
 
         bool doEntryExist(std::string cell_name);
         // entry getMapBycellName(std::string cell_name);
+        entry searchByCellNameAndMap(std::string cell_name , std::string mapName);
+        int getIdByCellNameAndMap(std::string cell_name , std::string map_name);
+        void removeByCellNameAndMap(std::string cell_name , std::string map_name);
 
-        
 
 };

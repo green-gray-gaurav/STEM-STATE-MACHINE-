@@ -1,0 +1,1 @@
+g++ -o runner main.cpp serilixing_fxns.cpp tokenizer.cpp state_map.cpp cell_memory_table.cpp hyperQ.cpp RCS.cpp

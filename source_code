@@ -1,7 +1,38 @@
-$cell1
+$loop MOVE I [5] S [printer] CHOOK
 
-S [hello_world!] display
-S [my_name_is_gaurav] display
-S [yahoo!] display
+@printer 
+
+    $stream MOVE S [this is the inner loop ] display newline
+            
+           
+    $loop2 GETCELL I [main:loop] MOVE S [printer2] CHOOK
+    
+
+    $temp GETCELL I [main:loop] $temp SUB I [1] $temp PUTCELL I [main:loop]
+
+@printer2 
+    $stream GETCELL I [printer:loop2] display newline
+    $temp GETCELL I [printer:loop2] SUB I [1]  PUTCELL I [printer:loop2]
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
 
 

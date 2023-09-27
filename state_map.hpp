@@ -8,6 +8,7 @@
 #include "serilixing_fxns.hpp"
 #include "cell_memory_table.hpp"
 #include "hyperQ.hpp"
+#include "RCS.hpp"
 
 
 class State{
@@ -49,17 +50,24 @@ class State_map{
         //some pointers
         Cell_table * cellTable =NULL;
         hyperSq * hyperStateQueue = NULL;
+        RCS * recentSelectedStack = NULL;
 
         //internal states // selction cell
          std::pair<int , std::string> SELECTED_CELL; //cell
-        enum{F,I,S} CELL_PAHSE = I;
-        std::string D_KEY;
+        
+        
+        enum{F,I,S,R} CELL_PAHSE = I;
+        
+        
+        enum{MOVE , RECSTACK, GETCELLVAL , PUTCELLVAL,
+             ADD , SUB , MUL , DIV} D_KEY_TYPE;
 
+        enum{REFER , SELF} CELL_VALUE_PHASE;
         //some other states ehecihc are e\ye tto decode
 
         
 
-    std::string runMap();
+    std::vector<std::string> runMap();
 
     bool isEvaluated();
 
@@ -69,9 +77,10 @@ class State_map{
 
 
     //this is import part where you load the ref from the 
-    void loadRefernces(Cell_table * cellTable , hyperSq * hyperStateQueue){
+    void loadRefernces(Cell_table * cellTable , hyperSq * hyperStateQueue , RCS * RecentCellStack){
         this->cellTable = cellTable;
         this->hyperStateQueue = hyperStateQueue;
+        this->recentSelectedStack = RecentCellStack;
     }
 
 };

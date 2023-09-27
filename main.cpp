@@ -52,6 +52,10 @@ Cell_table CELLTABLE;
 //here is hyper queue
 hyperSq HYPERSTATEQ;
 
+//cell logger
+
+RCS RecentCellStack;
+
 
 int main(int argc , char * argv[]){
         std::cerr << "linked SUCCESFULLY_________________________________" << std:: endl;
@@ -71,6 +75,7 @@ int main(int argc , char * argv[]){
     //here we are stacking up the primary map (main map)
     std::cerr << "loaded SUCCESFULLY_________________________________" << std:: endl;
     State_map main_map = map_table["main"];
+    main_map.map_name = "main";
     MAPSTACK.push(main_map);
 
     // std::cout << main_map.STATES[0][3].bufferQueue.front().raw_data << std::endl;
@@ -81,24 +86,47 @@ int main(int argc , char * argv[]){
     while(!MAPSTACK.empty()){ // this is the main loop
 
 
-        State_map current_map_snapshot = MAPSTACK.top();
+        State_map * current_map_snapshot = &(MAPSTACK.top());
+
+
+        // std::cout << current_map_snapshot->currentSquenceState << std::endl;
         
         //here show this snapshot the current instance of the cell table and huperQ
-        current_map_snapshot.loadRefernces(&CELLTABLE , &HYPERSTATEQ);
+        current_map_snapshot->loadRefernces(&CELLTABLE , &HYPERSTATEQ , &RecentCellStack);
 
         //run this snapshot
-        std::string statusCode = current_map_snapshot.runMap();
+        std::vector<std::string> statusCodeObj = current_map_snapshot->runMap();
         //handel the result object
        
         //here is the extrenal handling
         //other stauts codes
-        // std::cout << MAPSTACK.empty() << " "   << statusCode << std::endl;
-        //here is the removal if map is not pending has completed the execturiotn
+        // std::cout << MAPSTACK.empty() << " "   << statusCodeObj[0] << std::endl;
+        //here is the removal if m ap is not pending has completed the execturiotn
+        std::string statusCode = statusCodeObj[0];
+
         if(statusCode == "D")//donw with map execution
-            MAPSTACK.pop();
-        if(statusCode == "E"){
+            {   
+                //delete the associated cells 
+                //berttr method is using threads---->
+                //but for now
+                CELLTABLE.removeByCellNameAndMap("" , statusCodeObj[1]); 
+                MAPSTACK.pop();
+            }
+
+        else if(statusCode == "E"){//error status
+            //add extra info 
             std::cout << "FAILED" << std::endl;
             return 0;
+        }
+        else if (statusCode == "REQ"){ //normal hook request
+
+            State_map map = map_table[statusCodeObj[1]];
+            // std::cout <<statusCodeObj[1]<< std::endl;
+            
+            // std::cout << "empty: " <<map.STATES[map.sequencer[0].first][map.sequencer[0].second].bufferQueue.front().raw_data << std::endl;
+            map.map_name = statusCodeObj[1];
+            MAPSTACK.push(map);
+
         }
     }
 
