@@ -1,31 +1,17 @@
-$stream I read
-
-$stream GEQL I [18]
-
-$stream MOVE S [print]
-        SELECT S [print2] 
-        HOOK
-
-@print
-    $stream S [sorry you cant vote] display
-
-@print2 
-    $stream S [yes! you can vote] display
 
 
+$hp MOVE F [100] push [200] push
+$call MOVE S [getSum] HOOK
+$call MOVE F pulls pop
+display newline
 
 
+@getSum 
 
+    $value2 F pulls pop
+    $value3 F pulls pop
 
-
-  
-
-
-
-
-
-
-
+    $value1 MOVE F [0] ADD [$value2] ADD [$value3] push 
 
 
 

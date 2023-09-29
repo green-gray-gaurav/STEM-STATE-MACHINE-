@@ -60,7 +60,7 @@ class State_map{
         
         
         enum{MOVE , RECSTACK, GETCELLVAL , PUTCELLVAL,
-             ADD , SUB , MUL , DIV , SELECT,
+             ADD , SUB , MUL , DIV , SELECT, SELECT_VAL ,
              GREATER , SMALLER , EQUAL , GEQUAL, SEQUAL , DIFFERENT} D_KEY_TYPE;
 
         enum{REFER , SELF} CELL_VALUE_PHASE;

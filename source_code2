@@ -1,0 +1,35 @@
+
+
+$hp MOVE F [300] push [200] push
+$call MOVE S [getMax] HOOK
+$call MOVE F pulls pop
+
+display newline
+
+
+
+
+@getSum 
+
+    $value2 F pulls pop
+    $value3 F pulls pop
+
+    $value1 MOVE F [0] ADD [$value2] ADD [$value3] push
+
+@getMax 
+
+    $num1 F pulls pop
+    $num2 F pulls pop
+
+    $compare MOVE F [$num1] 
+             GREATER [$num2]
+             MOVE S [getMaxCondition1] 
+             SELECT [] 
+             HOOK
+    $num1 push
+
+@getMaxCondition1
+    $num1ref GETCELL F [getMax:num2]
+             PUTCELL F [getMax:num1]
+    
+

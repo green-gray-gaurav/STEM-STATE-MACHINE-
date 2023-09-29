@@ -121,15 +121,94 @@
                     }
                     
                 }
-                
+                //selection process
                else if( D_KEY_TYPE == SELECT){
+                    
+
                     if(cellTable->table[SELECTED_CELL.first].VALUE.integer){
                         cellTable->table[SELECTED_CELL.first].VALUE.str = e.VALUE.str;
                     }
                     
-              }  
-                
-                }
+              } 
+            
+
+              //realtion code for the vairable conparison
+
+                 //relational operators
+            else if (D_KEY_TYPE == GREATER){
+               
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer > e.VALUE.integer;
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal > e.VALUE.decimal;
+                    }
+              }
+            else if (D_KEY_TYPE == SMALLER){
+                    
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer < e.VALUE.integer;
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal < e.VALUE.decimal;
+                    }
+
+              }
+            else if (D_KEY_TYPE == GEQUAL){
+                     
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = (cellTable->table[SELECTED_CELL.first].VALUE.integer >= e.VALUE.integer);
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = (cellTable->table[SELECTED_CELL.first].VALUE.decimal >= e.VALUE.decimal);
+                    }
+
+              }
+            else if (D_KEY_TYPE == SEQUAL){
+                  
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer <= e.VALUE.integer;
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal <= e.VALUE.decimal;
+                    }
+
+              }
+            else if (D_KEY_TYPE ==  EQUAL){
+                  
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer == e.VALUE.integer;
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal == e.VALUE.decimal;
+                    }
+
+              }
+            else if (D_KEY_TYPE == DIFFERENT){
+                   
+            
+                    if(CELL_PAHSE == I){
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.integer != e.VALUE.integer
+                        ;
+                    }
+                    else if(CELL_PAHSE == F){
+
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal != e.VALUE.decimal;
+                    }
+
+
+              }
+            
+            }
 
             else{//constant
                   
@@ -290,7 +369,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal > d_value;
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal > d_value;
                     }
               }
             else if (D_KEY_TYPE == SMALLER){
@@ -301,7 +380,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal < d_value;
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal < d_value;
                     }
 
               }
@@ -313,7 +392,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = (cellTable->table[SELECTED_CELL.first].VALUE.decimal >= d_value);
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = (cellTable->table[SELECTED_CELL.first].VALUE.decimal >= d_value);
                     }
 
               }
@@ -325,7 +404,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal <= d_value;
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal <= d_value;
                     }
 
               }
@@ -337,7 +416,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal == d_value;
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal == d_value;
                     }
 
               }
@@ -349,7 +428,7 @@
                     }
                     else if(CELL_PAHSE == F){
 
-                        cellTable->table[SELECTED_CELL.first].VALUE.decimal = cellTable->table[SELECTED_CELL.first].VALUE.decimal != d_value;
+                        cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[SELECTED_CELL.first].VALUE.decimal != d_value;
                     }
 
 
@@ -379,6 +458,7 @@
             if(stateData.raw_data == "PUTCELL") D_KEY_TYPE = PUTCELLVAL;    
             
             if(stateData.raw_data == "SELECT") D_KEY_TYPE = SELECT;
+            if(stateData.raw_data == "SELECTVAL") D_KEY_TYPE = SELECT_VAL;
 
             if(stateData.raw_data == "GEQL") D_KEY_TYPE = GEQUAL;
             if(stateData.raw_data == "SEQL") D_KEY_TYPE = SEQUAL;
@@ -426,7 +506,7 @@
                     std::cin >> cellTable->table[SELECTED_CELL.first].VALUE.str;
 
             }
-            //hyper quue 
+            //hyper quue  // dynamic type
             else if(stateData.raw_data == "pull"){
                 hyperSq::hyperData hd = hyperStateQueue->pull();
                 // std::cout << "value: " << hd.cell_index <<cellTable->table[hd.cell_index].VALUE.str << std::endl; 
@@ -438,12 +518,28 @@
                     cellTable->table[SELECTED_CELL.first].VALUE.integer = cellTable->table[hd.cell_index].VALUE.integer;
                 
             }
+            else if (stateData.raw_data == "pulls"){
+
+                hyperSq::hyperData hd = hyperStateQueue->pull();
+                // std::cout << "value: " << hd.cell_index <<cellTable->table[hd.cell_index].VALUE.str << std::endl; 
+                if (CELL_PAHSE == F)
+                    {cellTable->table[SELECTED_CELL.first].VALUE.decimal = hd.d;}
+                if (CELL_PAHSE == S)
+                    {cellTable->table[SELECTED_CELL.first].VALUE.str = hd.s;}
+                if (CELL_PAHSE == I)
+                   { cellTable->table[SELECTED_CELL.first].VALUE.integer = hd.i;}
+                
+
+            }
+
             else if(stateData.raw_data == "pop"){ //hyper pop
                     hyperStateQueue->pop();
             } 
             else if(stateData.raw_data == "push"){//hyper pop
-                    
-                    hyperStateQueue->push(SELECTED_CELL.first);
+                    //getting the cell entry
+                    Cell_table::entry e = cellTable->searchByCellNameAndMap(SELECTED_CELL.second, this->map_name);
+                    hyperStateQueue->push(SELECTED_CELL.first , e.VALUE.integer , e.VALUE.decimal , e.VALUE.str , e.VALUE.ref);
+
             }
             else if (stateData.raw_data == "refer") // refence type cell state key
             {
@@ -456,6 +552,8 @@
 
         }
         else if(stateData.state_type =="INCLUDE"){
+            //inclusiong of maps
+            return std::vector<std::string>({"REQ_MAP_ADD" , stateData.raw_data});
 
         }
         else if(stateData.state_type == "CHOOK"){

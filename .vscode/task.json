@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-o",
+                "myapp.exe",
+                "main.cpp",
+                "-I",
+                "C:/boost/include", 
+                "-L",
+                "C:/boost/lib",     
+                "-lboost_filesystem",
+                "-lboost_system"  
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}

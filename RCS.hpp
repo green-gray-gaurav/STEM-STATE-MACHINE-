@@ -5,6 +5,9 @@ class RCS{
     struct cellData
     {
         int cell_index = 0;
+
+        //inital data frame
+        
         //other data
     };
     std::vector<cellData> stk;

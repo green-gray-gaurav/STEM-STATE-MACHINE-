@@ -58,7 +58,7 @@ RCS RecentCellStack;
 
 
 int main(int argc , char * argv[]){
-        std::cerr << "linked SUCCESFULLY_________________________________" << std:: endl;
+        std::cerr << "static --- linked SUCCESFULLY_________________________________" << std:: endl;
         
     //session one loading the file
         //here is the loadin code
@@ -126,6 +126,12 @@ int main(int argc , char * argv[]){
             // std::cout << "empty: " <<map.STATES[map.sequencer[0].first][map.sequencer[0].second].bufferQueue.front().raw_data << std::endl;
             map.map_name = statusCodeObj[1];
             MAPSTACK.push(map);
+
+        }
+        else if(statusCode == "REQ_MAP_ADD"){
+            //here is the request to link a library map /custom map with the map table
+            //dynaminc link
+
 
         }
     }
