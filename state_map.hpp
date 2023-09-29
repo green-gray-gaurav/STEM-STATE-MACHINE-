@@ -38,6 +38,7 @@ class State_map{
 
     public:
         std::string map_name; //this is the map name
+        std::string domain;
         
         //mkaing a 5 x 5 map
 

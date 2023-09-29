@@ -1,17 +1,18 @@
+{source_code2}
 
-
-$hp MOVE F [100] push [200] push
-$call MOVE S [getSum] HOOK
-$call MOVE F pulls pop
+$var MOVE F [100] push [300] push
+$call MOVE S [source_code2.getMax] HOOK
+$var F pulls pop
 display newline
 
+$looper MOVE I [10] S [loop1] CHOOK
 
-@getSum 
 
-    $value2 F pulls pop
-    $value3 F pulls pop
 
-    $value1 MOVE F [0] ADD [$value2] ADD [$value3] push 
+@loop1
+    $var GETCELL I [main:looper] SUB [1] PUTCELL I [main:looper]
+
+    $stream MOVE S [this is the liner] display newline
 
 
 

@@ -7,7 +7,7 @@ void loadMapTable(std::map<std::string , State_map> &mt ,std::string & fileName)
         std::ifstream infile(fileName, std::ios::binary);
 
         if (!infile) {
-            std::cerr << "Error opening file for writing!" << std::endl;
+            std::cerr << "Error opening file for reading" << std::endl;
             return ;
         }
 
@@ -43,6 +43,9 @@ void linking( std::map<std::string , State_map> &mp1 ,  std::string name_space_p
 
 //this is the map table;
 std::map<std::string , State_map> map_table;
+
+std::map<std::string , std::map<std::string , State_map>> LIBS;
+
 //here we have out map stack
 std::stack<State_map> MAPSTACK;
 
@@ -122,15 +125,63 @@ int main(int argc , char * argv[]){
 
             State_map map = map_table[statusCodeObj[1]];
             // std::cout <<statusCodeObj[1]<< std::endl;
+            // int p = map.find(".");
+            // std::string map_name_ = map.substr(0, p);
+            // std::string cell_name_ = map_cell_name.substr(p+1 , map_cell_name.length()-p-1);
             
             // std::cout << "empty: " <<map.STATES[map.sequencer[0].first][map.sequencer[0].second].bufferQueue.front().raw_data << std::endl;
             map.map_name = statusCodeObj[1];
             MAPSTACK.push(map);
 
         }
+        else if (statusCode == "REQ_MAP"){
+                    std::string filename_map = statusCodeObj[1];
+                    size_t p = filename_map.find(".");
+                    if(p != std::string::npos) //a map from the  external libs
+                    {
+                        std::string filename = filename_map.substr(0, p);
+                        std::string map = filename_map.substr(p+1 , filename_map.length()-p-1);
+                        State_map mp = LIBS[filename][map];
+                        mp.map_name = map;
+                        mp.domain = filename;
+                        MAPSTACK.push(mp);
+
+
+                    }
+                    else{ // a mpa from the source file
+                        std::string domain_name = statusCodeObj[2];
+
+                        if(domain_name == ""){ // is current domain is root
+                          
+                            State_map map = map_table[statusCodeObj[1]];
+                            map.map_name = statusCodeObj[1];
+                            MAPSTACK.push(map);  
+
+                        }
+                        else{
+                            // toher than root domaiin
+                            State_map mp = LIBS[domain_name][statusCodeObj[1]];
+                            mp.map_name = statusCodeObj[1];
+                            mp.domain = domain_name;
+                            MAPSTACK.push(mp);
+                        }
+                    }
+
+                    
+        }
         else if(statusCode == "REQ_MAP_ADD"){
             //here is the request to link a library map /custom map with the map table
             //dynaminc link
+            std::map<std::string , State_map> add_table;
+
+            std::string filename = statusCodeObj[1] + "_.dat";
+            loadMapTable(add_table , filename);
+
+            for(auto map : add_table){
+                LIBS[statusCodeObj[1]][map.first] = map.second;
+            }
+
+
 
 
         }

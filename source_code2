@@ -1,14 +1,3 @@
-
-
-$hp MOVE F [300] push [200] push
-$call MOVE S [getMax] HOOK
-$call MOVE F pulls pop
-
-display newline
-
-
-
-
 @getSum 
 
     $value2 F pulls pop

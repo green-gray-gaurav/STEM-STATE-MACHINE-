@@ -553,6 +553,7 @@
         }
         else if(stateData.state_type =="INCLUDE"){
             //inclusiong of maps
+            this->currentSquenceState ++; 
             return std::vector<std::string>({"REQ_MAP_ADD" , stateData.raw_data});
 
         }
@@ -562,8 +563,8 @@
             //check the condition
             if(cellTable->table[SELECTED_CELL.first].VALUE.integer)
                 {
-                    std::string mapName = cellTable->table[SELECTED_CELL.first].VALUE.str;
-                    return std::vector<std::string>({"REQ" , mapName});
+                    std::string mapAddress = cellTable->table[SELECTED_CELL.first].VALUE.str;
+                    return std::vector<std::string>({"REQ_MAP" , mapAddress , this->domain});
                 }
 
  
@@ -573,9 +574,9 @@
             //map itself cant handle it so it will bw handle by enternal function
             this->currentSquenceState++;   
             //get the map name from tht active cell
-            std::string mapName = cellTable->table[SELECTED_CELL.first].VALUE.str;
+            std::string mapAddress = cellTable->table[SELECTED_CELL.first].VALUE.str;
             //
-             return std::vector<std::string>({"REQ" , mapName});
+             return std::vector<std::string>({"REQ_MAP" , mapAddress , this->domain});
 
         }
         //poping the exectuted state cell
