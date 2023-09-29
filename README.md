@@ -16,7 +16,7 @@
 > it has a concept of __cells__
 
 > __cells__ is a multi-variable has number of __phases__
-<br>
+
 __phase__ are like "types" 
 
 * float
