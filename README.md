@@ -47,4 +47,26 @@ __phase__ are like "types"
 ##### stem code dont use parser (its a grammar less lang)
 * because it uses limited states -we dont call it state machine for nothing.
 
+### some examples
+* #### how to make a loop
+* source code
+* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220159.png">
+* output
+* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220817.png">
+
+* #### a simple program
+* source code
+* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220817.png">
+* output
+* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220159.png">
+
+
+* #### using hooks
+* source code
+* [code](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220556.png)
+* output
+* [output](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20221723.png)
+
+
+
 
