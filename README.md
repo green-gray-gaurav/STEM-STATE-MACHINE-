@@ -54,18 +54,19 @@ __phase__ are like "types"
 * output
 * <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220817.png">
 
-* #### a simple program
-* source code
-* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220817.png">
-* output
-* <img src="https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220159.png">
-
-
 * #### using hooks
 * source code
-* [code](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220556.png)
+* ![source](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20221646.png)
 * output
-* [output](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20221723.png)
+* ![output](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20221723.png)
+  
+
+
+* #### a simple program using cells
+* source code
+* ![SOURCE](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20223537.png)
+* output
+* ![output](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220556.png)
 
 
 
