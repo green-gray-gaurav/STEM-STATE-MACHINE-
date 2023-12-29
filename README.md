@@ -64,7 +64,7 @@ __phase__ are like "types"
 
 * #### a simple program using cells
 * source code
-* ![SOURCE](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20223537.png)
+* ![source](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20223537.png)
 * output
 * ![output](https://github.com/green-gray-gaurav/STEM----STATE-MACHINE/blob/master/Screenshot%202023-12-29%20220556.png)
 
